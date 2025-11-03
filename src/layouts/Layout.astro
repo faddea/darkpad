@@ -1,0 +1,59 @@
+---
+interface Props {
+    title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<style>
+@keyframes spin-slow { from {
+      transform: rotate(0deg); /* ⬅️ CORREGIDO: 't' minúscula */
+    }
+to {
+      transform: rotate(360deg); /* ⬅️ CORREGIDO: 't' minúscula */
+    }
+  }
+
+  /* Aplica la animación al pseudo-elemento del brillo */
+  .animate-spin-slow::after {
+    animation: spin-slow 20s linear infinite; /* Un giro muy sutil */
+  }
+</style>
+
+<html lang="es" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title ? title + " | Notion Casero" : "Notion Casero"}</title>
+    <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+  <body class="bg-neutral-950 text-zinc-100 font-sans min-h-screen flex">
+    <aside
+      class="w-60 bg-black border-r border-zinc-800 flex flex-col justify-between p-4"
+    >
+      <div>
+        <a href="/#" 
+            >
+                <h1 class="text-2xl font-bold mb-8 text-white opacity-80">Mekaaa</h1>
+            </a>  
+        <nav class="flex flex-col gap-3">
+          <a href="/" class="hover:text-indigo-400 transition">Inicio</a>
+          <a href="/tareas" class="hover:text-indigo-400 transition">Tareas</a>
+          <a href="/calendario" class="hover:text-indigo-400 transition"
+            >Calendario</a
+          >
+          <a href="/diario" class="hover:text-indigo-400 transition">Diario</a>
+        </nav>
+      </div>
+      <footer class="text-xs text-zinc-500 mt-6">© 2025 Notion Casero</footer>
+    </aside>
+
+    {/* La sección principal ahora SÓLO contiene el slot. */}
+    <main class="flex-1 p-8 overflow-y-auto">
+      <slot />
+    </main>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+  ></script>
+</html>

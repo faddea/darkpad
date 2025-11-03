@@ -1,0 +1,18 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TaskList from "../components/TaskList.jsx";
+
+const fechaActual = new Date().toLocaleDateString("es-AR", {
+  weekday: "long",
+  day: "numeric",
+  month: "long",
+});
+// ...
+---
+
+<Layout title="Tareas">
+  {/* 1. Remueve max-w-5xl mx-auto y solo deja el padding. */}
+  <section class=""> 
+    <TaskList client:load /> 
+  </section>
+</Layout>
